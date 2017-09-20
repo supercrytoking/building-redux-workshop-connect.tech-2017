@@ -1,0 +1,38 @@
+export const applyMiddleware =
+    // Function accepting middlewares.
+    (...middlewares) =>
+        // Function accepting a createStore function and returns a createStore function
+        (createStore) =>
+            // Returned createStore function which, when invoked, will return a store.
+            (reducer) => {
+                // Return a created store.
+                // Ensure the returned store's dispatch function is overwritten with enhanced dispatch from each middleware.
+                // Hint: middleware API is a function() => returning a function() => that returns a **dispatch function**.
+            };
+
+const internalCreateStore = (reducer) => {
+    let state;
+    const subscribers = [];
+
+    const store = {
+        dispatch: (action) => {
+            const newState = reducer(state, action);
+            const stateChanged = state !== newState;
+            state = newState;
+
+            if (stateChanged) {
+                subscribers.forEach((subscriber) => subscriber());
+            }
+        },
+        getState: () => {
+            return state;
+        },
+        subscribe: (callback) => {
+            subscribers.push(callback);
+        },
+    };
+
+    return store;
+};
+
+export default (reducer) => internalCreateStore(reducer);
