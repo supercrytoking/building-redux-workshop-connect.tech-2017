@@ -21,7 +21,9 @@ npm run verify
 ```
 
 ## Updating an existing version of npm
+```
 npm i -g npm
+```
 
 ## Setup
 
