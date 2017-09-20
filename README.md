@@ -20,6 +20,9 @@ You can run `npm verify` to ensure you have the a valid version of node and npm 
 npm run verify
 ```
 
+## Updating an existing version of npm
+npm i -g npm
+
 ## Setup
 
 ```bash
